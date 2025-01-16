@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Human Organs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content:center;
+      align-items:center;
+      width: calc(100vw);
+      height: calc(100vh);
+    }
+
+    .human-body {
+      position: relative;
+      width: 100vw;  /* Responsive width */
+      height: 80vh; /* Responsive height */
+      background: url('./human-body-organs-1.png') no-repeat center/contain;
+      background-size: contain;
+    }
+
+    .organ {
+      position: absolute;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .organ:hover, .organ.active {
+      border-color: #ff6347;
+    }
+
+    /* Organ positions */
+    .heart {
+      top: 20%;
+      left: 45%;
+      width: 10%;
+      height: 15%;
+      z-index: 2;
+    }
+
+    .lungs {
+      top: 7%;
+      left: 35%;
+      width: 30%;
+      height: 28%;
+      z-index: 1;
+    }
+
+    .liver {
+      top: 35%;
+      left: 36%;
+      width: 16%;
+      height: 11%;
+      z-index: 3;
+    }
+
+    .stomach {
+      top: 38%;
+      left: 45%;
+      width: 18%;
+      height: 16%;
+      z-index: 2;
+    }
+
+    .pancreas {
+      top: 49%;
+      left: 40%;
+      width: 10%;
+      height: 6%;
+      z-index: 6;
+    }
+
+    .spleen {
+      top: 48%;
+      left: 37%;
+      width: 14%;
+      height: 8%;
+      z-index: 5;
+    }
+
+    .gallbladder {
+      top: 44%;
+      left: 43%;
+      width: 3%;
+      height: 3%;
+      z-index: 5;
+    }
+
+    .small-intestine {
+      top: 63%;
+      left: 40%;
+      width: 20%;
+      height: 13%;
+      z-index: 7;
+    }
+
+    .large-intestine {
+      top: 55%;
+      left: 34%;
+      width: 31%;
+      height: 30%;
+      z-index: 6;
+    }
+
+    .info-box {
+      position: fixed;
+      top: 20px;
+      padding: 15px;
+      border: 2px solid #fde0cf;
+      background-color: #ffffff;
+      text-align: center;
+      display: none;
+      z-index: 2;
+    }
+
+    .info-box.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="info-box" id="infoBox">Bir organa tıklayın.</div>
+
+    <div class="human-body">
+      <div class="organ heart" data-info="Kalp: Vücuttaki kanı pompalayan ana organdır."></div>
+      <div class="organ lungs" data-info="Akciğerler: Nefes alma ve oksijen değişimini sağlayan organdır."></div>
+      <div class="organ liver" data-info="Karaciğer: Vücudun detoksifikasyonu ve metabolizma işlevlerinden sorumlu organdır."></div>
+      <div class="organ stomach" data-info="Mide: Besinleri sindiren organdır."></div>
+      <div class="organ pancreas" data-info="Pankreas: Sindirim ve insülin üretiminde rol oynar."></div>
+      <div class="organ gallbladder" data-info="Safra kesesi: Yağ sindirimini destekleyen safra sıvısını depolar."></div>
+      <div class="organ small-intestine" data-info="İnce bağırsak: Besinlerin emildiği yerdir."></div>
+      <div class="organ large-intestine" data-info="Kalın bağırsak: Su emilimini ve atıkların depolanmasını sağlar."></div>
+      <div class="organ spleen" data-info="Dalak: Kanı filtreleyerek bağışıklık sistemini destekler."></div>
+     
+    </div>
+
+  </div>
+
+  <script>
+    const organs = document.querySelectorAll('.organ');
+    const infoBox = document.getElementById('infoBox');
+
+    organs.forEach(organ => {
+      organ.addEventListener('click', () => {
+        // Remove active class from all organs
+        organs.forEach(o => o.classList.remove('active'));
+
+        // Add active class to the clicked organ
+        organ.classList.add('active');
+
+        // Update the info box content
+        infoBox.textContent = organ.getAttribute('data-info');
+        infoBox.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
