@@ -12,7 +12,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh; /* Ekran yüksekliğinden küçük ekranlarda kaydırmayı engeller */
+      height: 100vh; /* Ekran yüksekliğinden küçük ekranlarda kaydırmayı engeller */
       background-color: #f4f4f4;
     }
 
@@ -23,7 +23,7 @@
       align-items: center;
       width: 100%;
       max-width: 800px; /* Maksimum genişlik eklendi */
-      height: 90vh;
+      height: 100vh;
     }
 
     .human-body {
@@ -36,7 +36,6 @@
     .organ {
       position: absolute;
       border: 2px solid transparent;
-      border-radius: 8px;
       cursor: pointer;
       transition: border-color 0.3s ease;
     }
@@ -52,7 +51,6 @@
       border-color: #ff6347;
     }
 
-    /* Organ pozisyonları (daha okunabilir formatta) */
     .heart { top: 20%; left: 45%; width: 10%; height: 15%; z-index: 2; }
     .lungs { top: 7%; left: 32%; width: 35%; height: 28%; z-index: 1; }
     .liver { top: 33%; left: 33%; width: 20%; height: 15%; z-index: 3; }
@@ -89,7 +87,7 @@
         <div class="organ stomach" data-info="Mide: Besinleri sindiren organdır."></div>
         <div class="organ pancreas" data-info="Pankreas: Sindirim ve insülin üretiminde rol oynar."></div>
         <div class="organ gallbladder" data-info="Safra kesesi: Yağ sindirimini destekleyen safra sıvısını depolar."></div>
-        <div class="organ small-intestine" data-info="İnce bağırsak: Besinlerin emildiği yerdir.">ince</div>
+        <div class="organ small-intestine" data-info="İnce bağırsak: Besinlerin emildiği yerdir."></div>
         <div class="organ large-intestine" data-info="Kalın bağırsak: Su emilimini ve atıkların depolanmasını sağlar."></div>
         <div class="organ spleen" data-info="Dalak: Kanı filtreleyerek bağışıklık sistemini destekler."></div>
     </div>
