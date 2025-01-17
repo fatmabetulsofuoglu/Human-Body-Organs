@@ -1,64 +1,77 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>İnteraktif İnsan Organları</title>
+    <title>Organlar Görseli</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      * {
         margin: 0;
         padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        background-color: #f4f4f4;
+        box-sizing: border-box;
       }
 
-      h1 {
-        animation-duration: 3s;
-        animation-name: slide-in;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-
-      .container {
+      body {
+        font-family: Arial, sans-serif;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        min-width: 750px;
-        height: 90vh;
+        height: 100vh;
       }
 
-      .human-body {
+      header {
+        background-color: #fde0cf;
+        color: #76202c;
+        text-align: center;
+        padding: 20px;
+      }
+
+      main {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+      }
+
+      /* Soldaki alan sabit genişlikte olacak */
+      .left {
+        width: 70%; /* Sabit genişlik verildi */
+        position: relative;
+      }
+
+      .right {
+        flex: 1;
+        padding-right: 5%;
+        margin: auto;
+        overflow-y: auto;
+      }
+
+      /* Resim */
+      .image-container {
         position: relative;
         width: 100%;
-        height: 100%; /* human-body yüksekliği container yüksekliğine göre ayarlandı */
-        background: url("./human-body-organs-2.svg") no-repeat center/contain;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
+      .image-container img {
+        width: 80%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+
+      /* Organların üzerine gelindiğinde çerçeve eklenmesi */
       .organ {
         position: absolute;
         border: 2px solid transparent;
-        border-radius: 8px;
         cursor: pointer;
-        transition: border-color 0.3s ease;
       }
 
-      @media (hover: hover) {
-        .organ:hover {
-          border-color: #ff6347;
-          background-color: rgba(255, 0, 0, 0.1);
-        }
+      .organ:hover {
+        border: 2px solid red;
       }
 
-      .organ.active {
-        border-color: #ff6347;
-        background-color: rgba(255, 0, 0, 0.2);
-      }
-
+      /* Organların konumlandırılması */
       .heart {
         top: 20%;
         left: 43%;
@@ -123,89 +136,211 @@
         z-index: 6;
       }
 
-      .info-box {
-        position: fixed;
-        width: 40%;
-        bottom: 5%;
-        padding: 15px;
-        border: 2px solid #fde0cf;
+      .organ-button {
+        align-items: center;
         background-color: #ffffff;
-        text-align: center;
-        display: none;
-        z-index: 2;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.25rem;
+        box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+        box-sizing: border-box;
+        color: rgba(0, 0, 0, 0.85);
+        cursor: pointer;
+        display: inline-flex;
+        font-family: system-ui, -apple-system, system-ui, "Helvetica Neue",
+          Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        justify-content: center;
+        line-height: 1.25;
+        margin: 0;
+        min-height: 3rem;
+        padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+        position: relative;
+        text-decoration: none;
+        transition: all 250ms;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        width: auto;
       }
 
-      .info-box.active {
-        display: block;
+      .organ-button:hover,
+      .organ-button :focus {
+        border-color: rgba(0, 0, 0, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+        color: rgba(0, 0, 0, 0.65);
+      }
+
+      .organ-button :hover {
+        transform: translateY(-1px);
+      }
+
+      .organ-button:active {
+        background-color: #f0f0f1;
+        border-color: rgba(0, 0, 0, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+        color: rgba(0, 0, 0, 0.65);
+        transform: translateY(0);
+      }
+
+      /* Organlar Butonlarını Düzenlemek İçin Flexbox */
+      .buttons-container {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      /* Info-box */
+      .info-box {
+        background-color: #fff;
+        min-height: 250px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.15);
+        box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+        padding: 15px;
+        margin-top: 20px;
+        font-size: 16px;
+        border-radius: 5px;
       }
     </style>
   </head>
   <body>
-    <div class="container">
+    <header>
       <h1>Organlarımızı Tanıyalım!</h1>
-      <div class="human-body">
-        <div
-          class="organ heart"
-          data-info="Kalp: Vücuttaki kanı pompalayan ana organdır."
-        ></div>
-        <div
-          class="organ lungs"
-          data-info="Akciğerler: Nefes alma ve oksijen değişimini sağlayan organdır."
-        ></div>
-        <div
-          class="organ liver"
-          data-info="Karaciğer: Vücudun detoksifikasyonu ve metabolizma işlevlerinden sorumlu organdır."
-        ></div>
-        <div
-          class="organ stomach"
-          data-info="Mide: Besinleri sindiren organdır."
-        ></div>
-        <div
-          class="organ pancreas"
-          data-info="Pankreas: Sindirim ve insülin üretiminde rol oynar."
-        ></div>
-        <div
-          class="organ gallbladder"
-          data-info="Safra kesesi: Yağ sindirimini destekleyen safra sıvısını depolar."
-        ></div>
-        <div
-          class="organ small-intestine"
-          data-info="İnce bağırsak: Besinlerin emildiği yerdir."
-        ></div>
-        <div
-          class="organ large-intestine"
-          data-info="Kalın bağırsak: Su emilimini ve atıkların depolanmasını sağlar."
-        ></div>
-        <div
-          class="organ spleen"
-          data-info="Dalak: Kanı filtreleyerek bağışıklık sistemini destekler."
-        ></div>
+    </header>
+    <main>
+      <div class="left">
+        <div class="image-container">
+          <img src="./human-body-organs-1.png" alt="İnsan Organları" />
+          <!-- Organlar için etkileşimli bölgeler -->
+          <div class="organ heart"></div>
+          <div class="organ lungs"></div>
+          <div class="organ stomach"></div>
+          <div class="organ liver"></div>
+          <div class="organ pancreas"></div>
+          <div class="organ gallbladder"></div>
+          <div class="organ small-intestine"></div>
+          <div class="organ large-intestine"></div>
+          <div class="organ spleen"></div>
+        </div>
       </div>
+      <div class="right">
+        <div class="buttons-container">
+          <button class="organ-button" onclick="highlightOrgan('heart')">
+            KALP
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('lungs')">
+            AKCİĞER
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('stomach')">
+            MİDE
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('liver')">
+            KARACİĞER
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('pancreas')">
+            PANKREAS
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('gallbladder')">
+            SAFRA KESESİ
+          </button>
+          <button
+            class="organ-button"
+            onclick="highlightOrgan('small-intestine')"
+          >
+            İNCE BAĞIRSAK
+          </button>
+          <button
+            class="organ-button"
+            onclick="highlightOrgan('large-intestine')"
+          >
+            KALIN BAĞIRSAK
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('spleen')">
+            DALAK
+          </button>
+        </div>
 
-      <div class="info-box" id="infoBox">Bir organa tıklayın.</div>
-    </div>
+        <!-- Info Box -->
+        <div id="info-box" class="info-box"></div>
+      </div>
+    </main>
 
     <script>
-      const organs = document.querySelectorAll(".organ");
-      const infoBox = document.getElementById("infoBox");
+      // Organın üzerine gelindiğinde çerçeve eklemek ve info-box güncellemek için fonksiyon
+      function highlightOrgan(organ) {
+        // Tüm organlardan çerçeveyi kaldır
+        const allOrgans = document.querySelectorAll(".organ");
+        allOrgans.forEach(function (item) {
+          item.style.border = "2px solid transparent";
+        });
 
-      function handleOrganClick(organ) {
-        organs.forEach((o) => o.classList.remove("active"));
-        organ.classList.add("active");
-        infoBox.textContent = organ.getAttribute("data-info");
-        infoBox.classList.add("active");
+        // Seçilen organın etrafına çerçeve ekle
+        const selectedOrgan = document.querySelector(`.${organ}`);
+        selectedOrgan.style.border = "2px solid red";
+
+        // Info-box içeriğini güncelle ve görünür yap
+        const infoBox = document.getElementById("info-box");
+        let infoText = "";
+
+        // Organın işlevini belirle
+        switch (organ) {
+          case "heart":
+            infoText =
+              "Kalp, vücudumuzun ritmik motoru! Günde yaklaşık 100 bin kez atarak kanı tüm organlara ulaştırır.";
+            infoHeader = "KALP"; // Başlık
+            break;
+          case "lungs":
+            infoText = "Akciğerler, vücudumuzun hava filtreleri! Nefes aldığında oksijeni toplar, nefes verdiğinde karbondioksiti dışarı atar.";
+            infoHeader = "AKCİĞER"; // Başlık
+            break;
+          case "stomach":
+            infoText =
+              "Mide, yediklerimizi enerjiye dönüştüren sindirim ustası! Yiyecekleri parçalayarak vücudumuzun kullanabileceği hale getirir.";
+            infoHeader = "MİDE"; // Başlık
+            break;
+          case "liver":
+            infoText =
+              "Karaciğer, vücudumuzun kimya laboratuvarı! Kanın temizlenmesi, enerji depolanması ve safra üretiminden sorumludur.";
+            infoHeader = "KARACİĞER"; // Başlık
+            break;
+          case "pancreas":
+            infoText = "Pankreas, sindirim ve kan şekeri kontrolünde uzman! Enzimler ve hormonlar üreterek dengemizi sağlar.";
+            infoHeader = "PANKREAS"; // Başlık
+            break;
+          case "gallbladder":
+            infoText =
+              "Safra kesesi, safra sıvısını depolar ve yağların sindirilmesine yardımcı olur.";
+            infoHeader = "SAFRA KESESİ"; // Başlık
+            break;
+          case "small-intestine":
+            infoText = "İnce bağırsak, besinlerin özünü çıkaran uzun sindirim kanalı! Yediklerimizin faydalı kısımlarını emer.”";
+            infoHeader = "İNCE BAĞIRSAK"; // Başlık
+            break;
+          case "large-intestine":
+            infoText =
+              "Kalın bağırsak, vücudumuzun atık yöneticisi! Sindirimden kalanları düzenler ve suyu geri emer.";
+            infoHeader = "KALIN BAĞIRSAK"; // Başlık
+            break;
+          case "spleen":
+            infoText =
+              "Dalak, bağışıklık sistemimizin destekçisi! Kanı temizler ve vücudumuzu hastalıklara karşı korur.";
+            infoHeader = "DALAK"; // Başlık
+            break;
+          default:
+            infoText = "Bu organ hakkında bilgi bulunmamaktadır.";
+            infoHeader = "Bilinmiyor"; // Başlık
+        }
+
+        // Info-box içeriğini güncelle ve göster
+        infoBox.innerHTML = `
+    <h3>${infoHeader}</h3> <!-- Başlık eklendi -->
+    <p>${infoText}</p>
+  `;
+        infoBox.style.display = "block";
       }
-
-      organs.forEach((organ) => {
-        organ.addEventListener("click", (event) => {
-          event.preventDefault();
-          handleOrganClick(organ);
-        });
-        organ.addEventListener("touchstart", (event) => {
-          event.preventDefault();
-          handleOrganClick(organ);
-        });
-      });
     </script>
   </body>
 </html>
