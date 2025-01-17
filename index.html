@@ -21,9 +21,18 @@
 
       header {
         background-color: rgba(0, 0, 0, 0.1);
-        color: #000;
-        text-align: center;
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-transform: uppercase;
+        font-size: 18px;
+        font-weight: 900;
+        letter-spacing: -0.175ch;
+        line-height: 0.9;
+        color: white;
+        -webkit-text-stroke: 2px black;
+        text-shadow: 2px 2px black;
       }
 
       main {
@@ -36,8 +45,7 @@
       .left {
         width: 60%;
         padding-left: 5%;
-        padding-bottom: 5%;
-        min-height: 90vh;
+        min-height: 100vh;
         position: relative;
       }
 
@@ -75,67 +83,85 @@
       }
 
       /* Organların konumlandırılması */
-      .heart {
-        top: 20%;
-        left: 43%;
-        width: 14%;
+
+      /* Kalp */
+      .heart { 
+        top: 17%;
+        left: 35%;
+        width: 35%;
         height: 17%;
         z-index: 2;
       }
+
+      /* Akciğer */
       .lungs {
-        top: 7%;
-        left: 29%;
-        width: 41%;
-        height: 28%;
+        top: 6%;
+        left: 0%;
+        width: 98%;
+        height: 25%;
         z-index: 1;
       }
+
+      /* Karaciğer */
       .liver {
-        top: 33%;
-        left: 30%;
-        width: 22%;
-        height: 15%;
+        top: 30%;
+        left: 3%;
+        width: 62%;
+        height: 14%;
         z-index: 3;
       }
+
+      /* Mide */
       .stomach {
-        top: 37%;
-        left: 43%;
-        width: 25%;
+        top: 32%;
+        left: 42%;
+        width: 53%;
         height: 18%;
         z-index: 2;
       }
+
+      /* Pankreas */
       .pancreas {
-        top: 48%;
-        left: 35%;
-        width: 14%;
+        top: 43%;
+        left: 15%;
+        width: 33%;
         height: 7%;
         z-index: 6;
       }
+
+      /* Dalak */
       .spleen {
-        top: 47%;
-        left: 32%;
-        width: 12%;
-        height: 10%;
+        top: 43%;
+        left: 8%;
+        width: 30%;
+        height: 9%;
         z-index: 5;
       }
+
+      /* Safra Kesesi */
       .gallbladder {
-        top: 44%;
-        left: 40%;
-        width: 5%;
-        height: 3%;
+        top: 39%;
+        left: 27%;
+        width: 15%;
+        height: 4%;
         z-index: 7;
       }
+
+      /* İnce Bağırsak */
       .small-intestine {
-        top: 63%;
-        left: 35%;
-        width: 30%;
+        top: 57%;
+        left: 17%;
+        width: 65%;
         height: 13%;
         z-index: 7;
       }
+
+      /* Kalın Bağırsak */
       .large-intestine {
-        top: 55%;
-        left: 29%;
-        width: 42%;
-        height: 29%;
+        top: 50%;
+        left: 1%;
+        width: 99%;
+        height: 26%;
         z-index: 6;
       }
 
@@ -216,15 +242,15 @@
         <div class="image-container">
           <img src="./human-body-organs-2.svg" alt="İnsan Organları" />
           <!-- Organlar için etkileşimli bölgeler -->
-          <div class="organ heart"></div>
-          <div class="organ lungs"></div>
-          <div class="organ stomach"></div>
-          <div class="organ liver"></div>
-          <div class="organ pancreas"></div>
-          <div class="organ gallbladder"></div>
-          <div class="organ small-intestine"></div>
-          <div class="organ large-intestine"></div>
-          <div class="organ spleen"></div>
+          <div class="organ heart" onclick="highlightOrgan('heart')"></div>
+          <div class="organ lungs" onclick="highlightOrgan('lungs')"></div>
+          <div class="organ stomach" onclick="highlightOrgan('stomach')"></div>
+          <div class="organ liver" onclick="highlightOrgan('liver')"></div>
+          <div class="organ pancreas" onclick="highlightOrgan('pancreas')"></div>
+          <div class="organ gallbladder" onclick="highlightOrgan('gallbladder')"></div>
+          <div class="organ small-intestine" onclick="highlightOrgan('small-intestine')"></div>
+          <div class="organ large-intestine" onclick="highlightOrgan('large-intestine')"></div>
+          <div class="organ spleen" onclick="highlightOrgan('spleen')"></div>
         </div>
       </div>
       <div class="right">
