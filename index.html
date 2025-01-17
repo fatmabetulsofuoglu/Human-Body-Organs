@@ -145,6 +145,16 @@
         z-index: 7;
       }
 
+      /* Böbrekler */
+      .kidney {
+        border: 2px solid red;
+        top: 48%;
+        left: 15%;
+        width: 70%;
+        height: 10%;
+        z-index: 10;
+      }
+
       /* İnce Bağırsak */
       .small-intestine {
         top: 55%;
@@ -250,6 +260,7 @@
             class="organ gallbladder"
             onclick="highlightOrgan('gallbladder')"
           ></div>
+          <div class="organ kidney" onclick="highlightOrgan('kidney')"></div>
           <div
             class="organ small-intestine"
             onclick="highlightOrgan('small-intestine')"
@@ -280,6 +291,9 @@
           </button>
           <button class="organ-button" onclick="highlightOrgan('gallbladder')">
             Safra Kesesi
+          </button>
+          <button class="organ-button" onclick="highlightOrgan('kidney')">
+            Böbrekler
           </button>
           <button
             class="organ-button"
@@ -348,12 +362,17 @@
             break;
           case "gallbladder":
             infoText =
-              "Safra kesesi, safra sıvısını depolar ve yağların sindirilmesine yardımcı olur.";
+              "Safra kesesi, sindirimin gizli yardımcısı! Karaciğerden gelen safra sıvısını depolar ve yağları mekanik olarak parçalamak için devreye girer.";
             infoHeader = "SAFRA KESESİ"; // Başlık
+            break;
+          case "kidney":
+            infoText =
+              "Böbrekler, vücudumuzun doğal filtreleri! Kandaki atıkları süzer ve idrar olarak dışarı atar.";
+            infoHeader = "BÖBREKLER"; // Başlık
             break;
           case "small-intestine":
             infoText =
-              "İnce bağırsak, besinlerin özünü çıkaran uzun sindirim kanalı! Yediklerimizin faydalı kısımlarını emer.”";
+              "İnce bağırsak, besinlerin özünü çıkaran uzun sindirim kanalı! Yediklerimizin faydalı kısımlarını emer.";
             infoHeader = "İNCE BAĞIRSAK"; // Başlık
             break;
           case "large-intestine":
