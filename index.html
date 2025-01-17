@@ -21,7 +21,7 @@
 
       header {
         background-color: rgba(0, 0, 0, 0.1);
-        padding: 20px;
+        padding: 25px 0px 25px 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -31,7 +31,7 @@
         line-height: 1;
         color: white;
         -webkit-text-stroke: 1px black;
-        text-shadow: 2px 2px black;
+        text-shadow: 1px 1px black;
       }
 
       main {
@@ -40,7 +40,6 @@
         overflow: hidden;
       }
 
-      /* Soldaki alan sabit genişlikte olacak */
       .left {
         width: 60%;
         padding-left: 5%;
@@ -55,7 +54,6 @@
         overflow-y: auto;
       }
 
-      /* Resim */
       .image-container {
         position: relative;
         width: 100%;
@@ -75,8 +73,6 @@
         position: absolute;
         border: 2px solid transparent;
         cursor: pointer;
-
-        border: 2px solid red;
       }
 
       .organ:hover {
@@ -87,7 +83,7 @@
 
       /* Kalp */
       .heart { 
-        top: 21%;
+        top: 20%;
         left: 35%;
         width: 35%;
         height: 15%;
@@ -96,7 +92,7 @@
 
       /* Akciğer */
       .lungs {
-        top: 11%;
+        top: 10%;
         left: 0%;
         width: 98%;
         height: 22%;
@@ -214,7 +210,6 @@
         transform: translateY(0);
       }
 
-      /* Organlar Butonlarını Düzenlemek İçin Flexbox */
       .buttons-container {
         display: flex;
         gap: 5px;
@@ -222,7 +217,6 @@
         flex-direction: column;
       }
 
-      /* Info-box */
       .info-box {
         background-color: #fff;
         border: 1px solid rgba(0, 0, 0, 0.1);
@@ -242,7 +236,6 @@
       <div class="left">
         <div class="image-container">
           <img src="./human-body-organs-2.svg" alt="İnsan Organları" />
-          <!-- Organlar için etkileşimli bölgeler -->
           <div class="organ heart" onclick="highlightOrgan('heart')"></div>
           <div class="organ lungs" onclick="highlightOrgan('lungs')"></div>
           <div class="organ stomach" onclick="highlightOrgan('stomach')"></div>
@@ -291,7 +284,6 @@
           </button>
         </div>
 
-        <!-- Info Box -->
         <div id="info-box" class="info-box"></div>
       </div>
     </main>
